@@ -9,16 +9,14 @@ public abstract class Player {
     public Player(String nome) {
         this.nome = nome;
         this.puntiVita = 100;
-        this.difesa = 0;
+        this.difesa = 5;
         this.stamina = 100;
     }
 
     public String attacca(Player player) {
         int dmg = 15;
-        if (stamina < dmg) {
-            return "Non hai abbastanza stamina";
-        }
-        stamina -= 30;
+        if (stamina < dmg) return "Non hai abbastanza stamina";
+        stamina -= 20;
         if (player.difesa > dmg) dmg = 0;
         else dmg -= player.difesa;
         player.puntiVita -= dmg;
