@@ -5,30 +5,29 @@
 
 package Source;
 
-import java.util.*;
-import java.lang.*;
+import java.util.Scanner;
 
 public class Main {
     private static Scanner in = new Scanner(System.in);
-    private static Client client = new Client(2);
+    private static Client clt = new Client(2);
 
-    public static void main(String[] args) {
-        //todo
+    public static void main(String[] args) {//todo
+        clt.turn();
     }
 }
-//+-+-+
+/* +-+ \[T]/ +-+ */
 class Client {
-    private Scanner cin;
-    private Player[] pl;
+    private final Scanner cin;
+    protected final Player[] plr;
 
     public Client(int nPlayers) {
         this.cin = new Scanner(System.in);
-        this.pl = new Player[nPlayers];
+        this.plr = new Player[nPlayers];
         initPlayers();
     }
 
     private void initPlayers() {
-        for (int i = 0; i < pl.length; i++) {
+        for (int i = 0; i < plr.length; i++) {
             System.out.println("Giocatore " + i + " scegli il tuo personaggio");
             System.out.println("""
                     0 per Biden
@@ -39,13 +38,35 @@ class Client {
                     5 per Trump""");
             int choice = cin.nextInt();
             switch (choice) {
-                case 0 -> pl[i] = new Biden();
-                case 1 -> pl[i] = new Merkel();
-                case 2 -> pl[i] = new Putin();
-                case 3 -> pl[i] = new Salvini();
-                case 4 -> pl[i] = new Soleimani();
-                case 5 -> pl[i] = new Trump();
+                case 0 -> plr[i] = new Biden();
+                case 1 -> plr[i] = new Merkel();
+                case 2 -> plr[i] = new Putin();
+                case 3 -> plr[i] = new Salvini();
+                case 4 -> plr[i] = new Soleimani();
+                case 5 -> plr[i] = new Trump();
+                default -> initPlayers();
             }
         }
+    }
+
+    public void turn() {//todo
+        for (int i = 0; i < plr.length; i++) {
+            Player player = plr[i];
+            player = new Biden();
+        }
+        isDone();
+        turn();
+    }
+
+    public void isDone() {//todo
+        StringBuilder strBuild = new StringBuilder("90");
+        for (int i = 0; i < plr.length; i++) {
+            Player player = plr[i];
+            if (player.getPuntiVita() <= 0) {
+                System.out.println(player.getNome() + " e' morto, la partita e' finita");
+                strBuild.append(i).append("90");
+            }
+        }
+        System.exit(Integer.parseInt(strBuild.toString()));
     }
 }
