@@ -6,12 +6,12 @@ public class Putin extends Player implements Slavic {
     }
 
     @Override
-    public String invasion(Player player) {
+    public String attacco1(Player player) {
         return "Invasione Russa";
     }
 
     @Override
-    public String vodka() {
+    public String attacco2(Player player) {
         return "Vodka!";
     }
 

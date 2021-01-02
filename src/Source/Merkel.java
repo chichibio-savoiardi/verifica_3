@@ -1,17 +1,17 @@
 package Source;
 
-public class Merkel extends Player implements European {
+public class Merkel extends Player {
     public Merkel() {
         super("Merchel");
     }
 
     @Override
-    public String jointOperation(Player player) {
+    public String attacco1(Player player) {
         return "Operazione Congiunta";
     }
 
     @Override
-    public String politicalReform(Player player) {
+    public String attacco2(Player player) {
         return "Riforma Politca";
     }
 

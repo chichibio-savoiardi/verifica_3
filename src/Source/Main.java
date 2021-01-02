@@ -17,8 +17,8 @@ public class Main {
 }
 /* +-+ \[T]/ +-+ */
 class Client {
-    private final Scanner cin;
-    protected final Player[] plr;
+    private Scanner cin;
+    protected Player[] plr;
 
     public Client(int nPlayers) {
         this.cin = new Scanner(System.in);
@@ -52,21 +52,19 @@ class Client {
     public void turn() {//todo
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
-            player = new Biden();
         }
-        isDone();
-        turn();
     }
 
     public void isDone() {//todo
-        StringBuilder strBuild = new StringBuilder("90");
+        StringBuilder strBuild = new StringBuilder();
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             if (player.getPuntiVita() <= 0) {
+                strBuild.append("90");
                 System.out.println(player.getNome() + " e' morto, la partita e' finita");
-                strBuild.append(i).append("90");
+                strBuild.append(i);
             }
         }
-        System.exit(Integer.parseInt(strBuild.toString()));
+        if (strBuild.isEmpty()) System.exit(Integer.parseInt(strBuild.toString()));
     }
 }

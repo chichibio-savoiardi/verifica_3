@@ -1,17 +1,17 @@
 package Source;
 
-public class Salvini extends Player implements European {
+public class Salvini extends Player {
     public Salvini() {
         super("Capitan Salvini");
     }
 
     @Override
-    public String jointOperation(Player player) {
+    public String attacco1(Player player) {
         return "Operazione Congiunta";
     }
 
     @Override
-    public String politicalReform(Player player) {
+    public String attacco2(Player player) {
         return "Riforma Politca";
     }
 

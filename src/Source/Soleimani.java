@@ -1,17 +1,17 @@
 package Source;
 
-public class Soleimani extends Player implements Arabic {
+public class Soleimani extends Player {
     public Soleimani() {
         super("Solemani");
     }
 
     @Override
-    public String beating(Player player) {
+    public String attacco1(Player player) {
         return "Pestaggio";
     }
 
     @Override
-    public String childSoldiers(Player player) {
+    public String attacco2(Player player) {
         return "Bambini Soldato";
     }
 

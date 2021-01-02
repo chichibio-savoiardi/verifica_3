@@ -1,13 +1,24 @@
 package Source;
 
-public abstract class Player {
-    protected String nome;
+public abstract class Player implements Specials {
+    protected String nome, nomeATK1, nomeATK2;
     protected int puntiVita;
     protected int difesa;
     protected int stamina;
 
+    public Player(String nome, String nomeATK1, String nomeATK2) {
+        this.nome = nome;
+        this.nomeATK1 = nomeATK1;
+        this.nomeATK2 = nomeATK2;
+        this.puntiVita = 100;
+        this.difesa = 5;
+        this.stamina = 100;
+    }
+
     public Player(String nome) {
         this.nome = nome;
+        this.nomeATK1 = Specials.nameATK1;
+        this.nomeATK2 = Specials.nameATK2;
         this.puntiVita = 100;
         this.difesa = 5;
         this.stamina = 100;

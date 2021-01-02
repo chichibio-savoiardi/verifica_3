@@ -1,16 +1,18 @@
 package Source;
 
-public class Biden extends Player implements American{
-    public Biden() {
-        super("Giovanni Bidone");
-    }
+public class Biden extends Player implements American {
 
-    public String mcNuke(Player player) {
-        return "McNuke";
+    public Biden() {
+        super("Giovanni Bidone", American.nameATK1, American.nameATK2);
     }
 
     @Override
-    public String borderControl(Player player) {
+    public String attacco1(Player player) {
+        return American.nameATK1;
+    }
+
+    @Override
+    public String attacco2(Player player) {
         return "Controllo Bordi";
     }
 

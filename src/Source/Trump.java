@@ -1,17 +1,17 @@
 package Source;
 
-public class Trump extends Player implements American {
+public class Trump extends Player {
     public Trump() {
         super("Donaldo Trombetta");
     }
 
     @Override
-    public String mcNuke(Player player) {
+    public String attacco1(Player player) {
         return "McNuke";
     }
 
     @Override
-    public String borderControl(Player player) {
+    public String attacco2(Player player) {
         return "Controllo Bordi";
     }
 
