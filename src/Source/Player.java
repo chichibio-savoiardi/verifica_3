@@ -1,10 +1,10 @@
 package Source;
 
 public abstract class Player implements Specials {
-    protected String nome, nomeATK1, nomeATK2;
-    protected int puntiVita;
-    protected int difesa;
-    protected int stamina;
+    private String nome, nomeATK1, nomeATK2;
+    private int puntiVita;
+    private int difesa;
+    private int stamina;
 
     public Player(String nome, String nomeATK1, String nomeATK2) {
         this.nome = nome;
@@ -41,6 +41,22 @@ public abstract class Player implements Specials {
 
     public int getPuntiVita() {
         return puntiVita;
+    }
+
+    public String getNomeATK1() {
+        return nomeATK1;
+    }
+
+    public String getNomeATK2() {
+        return nomeATK2;
+    }
+
+    public int getDifesa() {
+        return difesa;
+    }
+
+    public int getStamina() {
+        return stamina;
     }
 
     @Override

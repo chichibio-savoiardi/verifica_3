@@ -18,6 +18,6 @@ public class Biden extends Player implements American {
 
     @Override
     public String toString() {
-        return nome;
+        return super.getNome();
     }
 }

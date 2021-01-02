@@ -1,8 +1,8 @@
 package Source;
 
-public class Merkel extends Player {
+public class Merkel extends Player implements European {
     public Merkel() {
-        super("Merchel");
+        super("Merchel", European.nameATK1, European.nameATK2);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Merkel extends Player {
 
     @Override
     public String toString() {
-        return null;
+        return super.getNome();
     }
 }

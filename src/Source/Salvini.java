@@ -1,8 +1,8 @@
 package Source;
 
-public class Salvini extends Player {
+public class Salvini extends Player implements European {
     public Salvini() {
-        super("Capitan Salvini");
+        super("Capitan Salvini", European.nameATK1, European.nameATK2);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Salvini extends Player {
 
     @Override
     public String toString() {
-        return nome;
+        return super.getNome();
     }
 }

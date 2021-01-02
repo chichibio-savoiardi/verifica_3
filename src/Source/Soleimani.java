@@ -1,8 +1,8 @@
 package Source;
 
-public class Soleimani extends Player {
+public class Soleimani extends Player implements Arabic {
     public Soleimani() {
-        super("Solemani");
+        super("Solemani", Arabic.nameATK1, Arabic.nameATK2);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Soleimani extends Player {
 
     @Override
     public String toString() {
-        return null;
+        return super.getNome();
     }
 }

@@ -13,12 +13,13 @@ public class Main {
 
     public static void main(String[] args) {//todo
         clt.turn();
+        clt.isDone();
     }
 }
 /* +-+ \[T]/ +-+ */
 class Client {
     private Scanner cin;
-    protected Player[] plr;
+    private Player[] plr;
 
     public Client(int nPlayers) {
         this.cin = new Scanner(System.in);
@@ -52,19 +53,23 @@ class Client {
     public void turn() {//todo
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
+            System.out.println(player.getNome() + " e' il tuo turno!");
         }
     }
 
-    public void isDone() {//todo
+    public void isDone() {//todo redo
         StringBuilder strBuild = new StringBuilder();
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             if (player.getPuntiVita() <= 0) {
                 strBuild.append("90");
-                System.out.println(player.getNome() + " e' morto, la partita e' finita");
+                System.out.println(player.getNome() + " e' morto");
                 strBuild.append(i);
             }
         }
-        if (strBuild.isEmpty()) System.exit(Integer.parseInt(strBuild.toString()));
+        if (strBuild.isEmpty()) {
+            System.out.println("La partita e' finita");
+            System.exit(Integer.parseInt(strBuild.toString()));
+        }
     }
 }

@@ -2,7 +2,7 @@ package Source;
 
 public class Putin extends Player implements Slavic {
     public Putin() {
-        super("Putin Putout");
+        super("Putin Putout", Slavic.nameATK1, Slavic.nameATK2);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Putin extends Player implements Slavic {
 
     @Override
     public String toString() {
-        return nome;
+        return super.getNome();
     }
 }

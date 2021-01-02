@@ -1,8 +1,8 @@
 package Source;
 
-public class Trump extends Player {
+public class Trump extends Player implements American {
     public Trump() {
-        super("Donaldo Trombetta");
+        super("Donaldo Trombetta", American.nameATK1, American.nameATK2);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Trump extends Player {
 
     @Override
     public String toString() {
-        return nome;
+        return super.getNome();
     }
 }
