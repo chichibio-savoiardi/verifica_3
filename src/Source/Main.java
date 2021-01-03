@@ -8,10 +8,10 @@ package Source;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner in = new Scanner(System.in);
     private static Client clt = new Client(2);
 
-    public static void main(String[] args) {//TODO
+    public static void main(String[] args) {// TODO
+        clt.printPlayers();
         clt.turn();
         clt.isDone();
     }
@@ -33,34 +33,34 @@ class Client {
             System.out.println("Giocatore " + i + " scegli il tuo personaggio");
             System.out.println("""
                     0 per Biden
-                    1 per Merkel
-                    2 per Putin
+                    1 per Trump
+                    2 per Merkel
                     3 per Salvini
                     4 per Soleimani
-                    5 per Trump""");
+                    5 per Putin""");
             switch (cin.nextInt()) {
                 case 0 -> plr[i] = new Biden();
-                case 1 -> plr[i] = new Merkel();
-                case 2 -> plr[i] = new Putin();
+                case 1 -> plr[i] = new Trump();
+                case 2 -> plr[i] = new Merkel();
                 case 3 -> plr[i] = new Salvini();
                 case 4 -> plr[i] = new Soleimani();
-                case 5 -> plr[i] = new Trump();
+                case 5 -> plr[i] = new Putin();
                 default -> initPlayers();
             }
         }
     }
 
-    public void turn() {//FIXME
+    public void turn() {
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
-            System.out.println(player + " e' il tuo turno!");
+            System.out.println(player + "e' il tuo turno!");
             menu(player);
             player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
         }
     }
 
     private void menu(Player player) {
-        System.out.println(player);
+        System.out.println("1 per attacco base" + "\n2 per " + player.getNomeATK1() + "\n3 per " + player.getNomeATK2());
         switch (cin.nextInt()) {
             case 1 -> {
                 player.attacca(targeter());
@@ -76,11 +76,28 @@ class Client {
     }
 
     private Player targeter() {
+        printPlayers();
         System.out.println("Scegli il giocatore da bersagliare");
-        for (int i = 0; i < plr.length; i++) {
-            System.out.println(i + ": " + plr[i].getNome());
+        int choice = cin.nextInt();
+        try {
+            if (plr[choice].getPuntiVita() <= 0) {
+                System.out.println("giocatore non valido: morto");
+                targeter();
+            }
+            return plr[choice];
+        } catch (Exception e) {
+            System.out.println("Valore non valido in " + targeter().getClass());
+            targeter();
         }
-        return plr[cin.nextInt()];
+        return plr[choice];
+    }
+
+    public void printPlayers() {
+        for (int i = 0; i < plr.length; i++) {
+            if (plr[i].getPuntiVita() > 0) {
+                System.out.println(i + ": " + plr[i].getNome());
+            }
+        }
     }
 
     public void isDone() {

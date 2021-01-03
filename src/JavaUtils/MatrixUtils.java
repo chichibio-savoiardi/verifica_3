@@ -1,10 +1,9 @@
 package JavaUtils;
 
 import java.util.*;
-import java.lang.*;
 
 public class MatrixUtils {
-    private Scanner matrIn = new Scanner(System.in);
+    BasicUtils basicUtils = new BasicUtils();
 
     public void print(int[][] matr) {
         for (int i = 0; i < matr.length; i++) { // Loop through all rows
@@ -57,28 +56,26 @@ public class MatrixUtils {
     }
 
     public void randomFill(int[][] matr, int min, int max) {
-        Random rand = new Random();
         for (int i = 0; i < matr.length; i++) {
             for (int j = 0; j < matr[i].length; j++) {
-                matr[i][j] = rand.nextInt((max - min) + 1) + min;
+                matr[i][j] = basicUtils.randInt(min, max);
             }
         }
     }
 
     public void randomBoolFill(int[][] matr) {
-        Random randNum = new Random();
         for (int i = 0; i < matr.length; i++) {
             for (int j = 0; j < matr[i].length; j++) {
-                matr[i][j] = randNum.nextInt(1);
+                matr[i][j] = basicUtils.randInt(0, 1);
             }
         }
     }
 
     public void randomBoolFill(char[][] matr) {
-        Random randNum = new Random();
+        Random rand = new Random();
         for (int i = 0; i < matr.length; i++) {
             for (int j = 0; j < matr[i].length; j++) {
-                if (randNum.nextInt(2) == 1) {
+                if (rand.nextInt(2) == 1) {
                     matr[i][j] = '#';
                 }
             }

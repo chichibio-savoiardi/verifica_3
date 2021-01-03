@@ -38,7 +38,7 @@ public class Biden extends Player implements American {
     @Override
     public String toString() {
         return "Nome: " + super.getNome() + ", Vita: " + super.getPuntiVita() + ", Stamina: " + super.getStamina()
-                + ", Difesa: " + super.getDifesa() + "\n" + "Info attacco base: " + ", Danno: " + super.getDannoATK()
+                + ", Difesa: " + super.getDifesa() + "\n" + "Info attacco base: " + "Danno: " + super.getDannoATK()
                 + ", Stamina: " + super.getConsumoATK() + "\n" + "Info " + super.getNomeATK1() + ": Danno: "
                 + super.getDannoATK1() + ", Stamina: " + super.getConsumoATK1() + ", Descrizione: "
                 + American.ATK1Description + "\n" + "Info " + super.getNomeATK2() + ": Danno: " + super.getDannoATK2()

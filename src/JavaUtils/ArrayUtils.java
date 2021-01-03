@@ -1,16 +1,7 @@
 package JavaUtils;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class ArrayUtils {
-    private Scanner arrayIn = new Scanner(System.in);
-
-    public void fill0123(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = i;
-        }
-    }
+    BasicUtils basicUtils = new BasicUtils();
 
     public void print(int[] array) {
         System.out.print("[ ");
@@ -39,33 +30,40 @@ public class ArrayUtils {
     public void print(Object[] array) {
         System.out.print("[ ");
         for (Object c : array) {
-            System.out.print(c + ", ");
+            System.out.print(c + "; ");
         }
         System.out.println("]");
     }
 
+    public void fill0123(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
     public void randomFill(int[] array, int min, int max) {
-        Random rand = new Random();
-        for (int i = 0; i < array.length; i++) array[i] = rand.nextInt((max - min) + 1) + min;
+        for (int i = 0; i < array.length; i++)
+            array[i] = basicUtils.randInt(min, max);
     }
 
     public void bubbleSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             boolean flag = false;
             for (int j = 0; j < array.length - 1; j++) {
-                //Se l' elemento j e maggiore del successivo allora scambiamo i valori
+                // Se l' elemento j e maggiore del successivo allora scambiamo i valori
                 if (array[j] > array[j + 1]) {
                     int k = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = k;
-                    flag = true; //Lo setto a true per indicare che é avvenuto uno scambio
+                    flag = true; // Lo setto a true per indicare che é avvenuto uno scambio
                 }
             }
             if (!flag)
                 break;
-			/*Se flag=false allora vuol dire che nell' ultima iterazione
-			non ci sono stati scambi, quindi il metodo può terminare
-			poiché l' array risulta ordinato*/
+            /*
+             * Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati
+             * scambi, quindi il metodo può terminare poiché l' array risulta ordinato
+             */
         }
     }
 
@@ -73,19 +71,20 @@ public class ArrayUtils {
         for (int i = 0; i < array.length; i++) {
             boolean flag = false;
             for (int j = 0; j < array.length - 1; j++) {
-                //Se l' elemento j e maggiore del successivo allora scambiamo i valori
+                // Se l' elemento j e maggiore del successivo allora scambiamo i valori
                 if (array[j].hashCode() > array[j + 1].hashCode()) {
                     Object k = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = k;
-                    flag = true; //Lo setto a true per indicare che é avvenuto uno scambio
+                    flag = true; // Lo setto a true per indicare che é avvenuto uno scambio
                 }
             }
             if (!flag)
                 break;
-			/*Se flag=false allora vuol dire che nell' ultima iterazione
-			non ci sono stati scambi, quindi il metodo può terminare
-			poiché l' array risulta ordinato*/
+            /*
+             * Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati
+             * scambi, quindi il metodo può terminare poiché l' array risulta ordinato
+             */
         }
     }
 
@@ -93,19 +92,20 @@ public class ArrayUtils {
         for (int i = 0; i < array.length; i++) {
             boolean flag = false;
             for (int j = 0; j < array.length - 1; j++) {
-                //Se l' elemento j e maggiore del successivo allora scambiamo i valori
+                // Se l' elemento j e maggiore del successivo allora scambiamo i valori
                 if (array[j] < array[j + 1]) {
                     int k = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = k;
-                    flag = true; //Lo setto a true per indicare che é avvenuto uno scambio
+                    flag = true; // Lo setto a true per indicare che é avvenuto uno scambio
                 }
             }
             if (!flag)
                 break;
-				/*Se flag=false allora vuol dire che nell' ultima iterazione
-				non ci sono stati scambi, quindi il metodo può terminare
-				poiché l' array risulta ordinato*/
+            /*
+             * Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati
+             * scambi, quindi il metodo può terminare poiché l' array risulta ordinato
+             */
         }
     }
 
@@ -116,13 +116,13 @@ public class ArrayUtils {
         int[] array2 = new int[array.length];
         for (x = 0; x < array2.length; x++) // zeroing vector
             array2[x] = 0;
-        //start of the algorithm
+        // start of the algorithm
         for (x = 0; x < array2.length; x++) {
             num = array[x]; // nuovo numero
             pos = 0;
             while ((array2[pos] < num) && (array2[pos] != 0))
-                pos++;           // trova il posto per inserimento
-            shiftR(array2, pos);       // crea un buco dove inserire
+                pos++; // trova il posto per inserimento
+            shiftR(array2, pos); // crea un buco dove inserire
             array2[pos] = (int) num;
         }
         System.arraycopy(array2, 0, array, 0, array.length);
@@ -130,19 +130,19 @@ public class ArrayUtils {
 
     public void shiftR(int[] array, int hole) {
         int x;
-        for (x = array.length - 2; x >= hole; x--) {   // sposta a destra
-            array[x + 1] = array[x];        // posto libero in buco
+        for (x = array.length - 2; x >= hole; x--) { // sposta a destra
+            array[x + 1] = array[x]; // posto libero in buco
         }
     }
 
     public void seleSort(int[] array) {
         int x, y, i_min;
         int temp;
-        for (x = 0; x < array.length - 1; x++) {  // ricerca del minimo
-            i_min = x;                           // hp primo come minimo
+        for (x = 0; x < array.length - 1; x++) { // ricerca del minimo
+            i_min = x; // hp primo come minimo
             for (y = x + 1; y < array.length; y++) { // x la parte dx del vettore
-                if (array[y] < array[i_min])        // se l'elemento � minore
-                    i_min = y;                     // indice nuovo minimo
+                if (array[y] < array[i_min]) // se l'elemento � minore
+                    i_min = y; // indice nuovo minimo
             }
             // scambia elemento corrente con il minore trovato
             temp = array[i_min];
@@ -155,7 +155,7 @@ public class ArrayUtils {
         int max = arr[0];
         int min = arr[0];
         int i = 1;
-        for (; i < arr.length; i++) { //Calcolo degli elementi max e min
+        for (; i < arr.length; i++) { // Calcolo degli elementi max e min
             if (arr[i] > max)
                 max = arr[i];
             else if (arr[i] < min)
@@ -163,13 +163,13 @@ public class ArrayUtils {
         }
         int[] arr2 = new int[max - min + 1];
         for (i = 0; i < arr2.length; i++)
-            arr2[i] = 0; //inizializza a zero gli elementi di arr2
+            arr2[i] = 0; // inizializza a zero gli elementi di arr2
         for (i = 0; i < arr.length; i++)
-            arr2[arr[i] - min]++;  //aumenta il numero di volte che si è incontrato il valore
-        //Ordinamento in base al contenuto dell'array delle frequenze arr2
-        int k = 0; //indice per l'array arr
+            arr2[arr[i] - min]++; // aumenta il numero di volte che si è incontrato il valore
+        // Ordinamento in base al contenuto dell'array delle frequenze arr2
+        int k = 0; // indice per l'array arr
         for (i = 0; i < arr2.length; i++) {
-            while (arr2[i] > 0) { //scrive arr2[i] volte il valore (i+min) nell'array arr
+            while (arr2[i] > 0) { // scrive arr2[i] volte il valore (i+min) nell'array arr
                 arr[k] = i + min;
                 k++;
                 arr2[i]--;
@@ -179,47 +179,48 @@ public class ArrayUtils {
 
     public int findMin(int[] vet) {
         int x, num1;
-        num1 = vet[0];         // inzializzo il min
+        num1 = vet[0]; // inzializzo il min
         for (x = 0; x < vet.length; x++)
             if (vet[x] < num1)
-                num1 = vet[x];     // il minore
+                num1 = vet[x]; // il minore
         return num1;
     }
 
     public int findMax(int[] vet) {
         int x, num2;
-        num2 = vet[0];         // inzializzo il max
+        num2 = vet[0]; // inzializzo il max
         for (x = 0; x < vet.length; x++)
             if (vet[x] > num2)
-                num2 = vet[x];     // il maggiore
+                num2 = vet[x]; // il maggiore
         return num2;
     }
 
     public void quickSort(int[] vett, int e_sx, int e_dx) {
-        int q;                        // nuovo indice  pivot
-        if (e_sx < e_dx) {             // ctr termine vettore
+        int q; // nuovo indice pivot
+        if (e_sx < e_dx) { // ctr termine vettore
             q = partition(vett, e_sx, e_dx);
             // -- chiamata sui sotto vettori sinistro e destro
-            quickSort(vett, e_sx, q - 1);  // vet di sinistra
-            quickSort(vett, q + 1, e_dx);  // vet di destra
+            quickSort(vett, e_sx, q - 1); // vet di sinistra
+            quickSort(vett, q + 1, e_dx); // vet di destra
         }
     }
 
     public int partition(int[] vett, int sx, int dx) {
-        int pivot, ipivot;                        // valore di pivot, indice posizione pivot
-        ipivot = sx;                              // scegli indice per il pivot: Hoare usa il primo
-        pivot = vett[ipivot];                     // valore_pivot <- [posizione_iniziale_pivot]
-        // effettua il partizionamento in due sotto vettori individuando q (posizione_effettiva_pivot)
+        int pivot, ipivot; // valore di pivot, indice posizione pivot
+        ipivot = sx; // scegli indice per il pivot: Hoare usa il primo
+        pivot = vett[ipivot]; // valore_pivot <- [posizione_iniziale_pivot]
+        // effettua il partizionamento in due sotto vettori individuando q
+        // (posizione_effettiva_pivot)
         while (sx < dx) {
             while ((vett[sx] <= pivot) && (sx < dx)) // cerco elemento di sinistra > pivot
                 sx++;
-            while (vett[dx] > pivot)                 // cerco elemento di destra < pivot
+            while (vett[dx] > pivot) // cerco elemento di destra < pivot
                 dx--;
-            if (sx < dx) {                            // se non ho finito di ordinare
-                swap(vett, sx, dx);                // scambio i due elementi
+            if (sx < dx) { // se non ho finito di ordinare
+                swap(vett, sx, dx); // scambio i due elementi
             }
         }
-        swap(vett, ipivot, dx);                // posiziona il pivot nella sua cella q
+        swap(vett, ipivot, dx); // posiziona il pivot nella sua cella q
         return dx;
     }
 
@@ -269,10 +270,9 @@ public class ArrayUtils {
 
     public int findPos(Object[] Array) {
         for (int i = 0; i < Array.length; i++)
-            if (Array[i] == null) return i;
+            if (Array[i] == null)
+                return i;
         return -1;
     }
 }
-
-
 /* fin */
