@@ -3,7 +3,7 @@ package Source;
 public class Biden extends Player implements American {
 
     public Biden() {
-        super("Giovanni Bidone", American.nameATK1, American.nameATK2);
+        super("Giovanni Bidone", American.nameATK1, American.nameATK2, American.mcNukeSTM, American.borderCtrlSTM, American.mcNukeDMG, American.borderCtrlDMG);
     }
 
     @Override
@@ -13,7 +13,7 @@ public class Biden extends Player implements American {
 
     @Override
     public String attacco2(Player player) {
-        return "Controllo Bordi";
+        return American.nameATK2;
     }
 
     @Override

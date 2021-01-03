@@ -2,7 +2,7 @@ package Source;
 
 public class Salvini extends Player implements European {
     public Salvini() {
-        super("Capitan Salvini", European.nameATK1, European.nameATK2);
+        super("Capitan Salvini", European.nameATK1, European.nameATK2, European.jointOpSTM, European.politicalReformSTM, European.jointOpDMG, European.politicalReformDMG);
     }
 
     @Override

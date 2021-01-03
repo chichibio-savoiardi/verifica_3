@@ -2,7 +2,7 @@ package Source;
 
 public class Putin extends Player implements Slavic {
     public Putin() {
-        super("Putin Putout", Slavic.nameATK1, Slavic.nameATK2);
+        super("Putin Putout", Slavic.nameATK1, Slavic.nameATK2, Slavic.invasionSTM, Slavic.vodkaSTM, Slavic.invasionDMG, Slavic.vodkaDMG);
     }
 
     @Override

@@ -54,22 +54,31 @@ class Client {
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             System.out.println(player.getNome() + " e' il tuo turno!");
+            menu(player);
         }
     }
 
-    public void isDone() {//todo redo
+    private void menu(Player player) {
+        System.out.println(  "1 per Attacco normale STM: 20, DMG: 15" + 
+                           "\n2 per " +  player.getNomeATK1() + "STM: " + player.getConsumoATK1() + ", DMG: " + player.getDannoATK1() + 
+                           "\n3 per " +  player.getNomeATK2() + "STM: " + player.getConsumoATK2() + ", DMG: " + player.getDannoATK2());
+    }
+
+    public void isDone() {//todo
         StringBuilder strBuild = new StringBuilder();
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             if (player.getPuntiVita() <= 0) {
                 strBuild.append("90");
-                System.out.println(player.getNome() + " e' morto");
                 strBuild.append(i);
+                System.out.println(player.getNome() + " e' morto");
             }
         }
         if (strBuild.isEmpty()) {
             System.out.println("La partita e' finita");
             System.exit(Integer.parseInt(strBuild.toString()));
+        } else {
+            turn();
         }
     }
 }

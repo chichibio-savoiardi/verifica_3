@@ -2,7 +2,7 @@ package Source;
 
 public class Soleimani extends Player implements Arabic {
     public Soleimani() {
-        super("Solemani", Arabic.nameATK1, Arabic.nameATK2);
+        super("Solemani", Arabic.nameATK1, Arabic.nameATK2, Arabic.beatingSTM, Arabic.childSoldiersSTM, Arabic.beatingDMG, Arabic.childSoldiersDMG);
     }
 
     @Override
