@@ -11,11 +11,12 @@ public class Main {
     private static Scanner in = new Scanner(System.in);
     private static Client clt = new Client(2);
 
-    public static void main(String[] args) {//todo
+    public static void main(String[] args) {//TODO
         clt.turn();
         clt.isDone();
     }
 }
+
 /* +-+ \[T]/ +-+ */
 class Client {
     private Scanner cin;
@@ -37,8 +38,7 @@ class Client {
                     3 per Salvini
                     4 per Soleimani
                     5 per Trump""");
-            int choice = cin.nextInt();
-            switch (choice) {
+            switch (cin.nextInt()) {
                 case 0 -> plr[i] = new Biden();
                 case 1 -> plr[i] = new Merkel();
                 case 2 -> plr[i] = new Putin();
@@ -50,21 +50,40 @@ class Client {
         }
     }
 
-    public void turn() {//todo
+    public void turn() {//FIXME
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
-            System.out.println(player.getNome() + " e' il tuo turno!");
+            System.out.println(player + " e' il tuo turno!");
             menu(player);
+            player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
         }
     }
 
     private void menu(Player player) {
-        System.out.println(  "1 per Attacco normale STM: 20, DMG: 15" + 
-                           "\n2 per " +  player.getNomeATK1() + "STM: " + player.getConsumoATK1() + ", DMG: " + player.getDannoATK1() + 
-                           "\n3 per " +  player.getNomeATK2() + "STM: " + player.getConsumoATK2() + ", DMG: " + player.getDannoATK2());
+        System.out.println(player);
+        switch (cin.nextInt()) {
+            case 1 -> {
+                player.attacca(targeter());
+            }
+            case 2 -> {
+                player.attacco1(targeter());
+            }
+            case 3 -> {
+                player.attacco2(targeter());
+            }
+            default -> menu(player);
+        }
     }
 
-    public void isDone() {//todo
+    private Player targeter() {
+        System.out.println("Scegli il giocatore da bersagliare");
+        for (int i = 0; i < plr.length; i++) {
+            System.out.println(i + ": " + plr[i].getNome());
+        }
+        return plr[cin.nextInt()];
+    }
+
+    public void isDone() {
         StringBuilder strBuild = new StringBuilder();
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];

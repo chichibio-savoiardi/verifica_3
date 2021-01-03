@@ -2,10 +2,11 @@ package Source;
 
 public abstract class Player implements Specials {
     private String nome, nomeATK1, nomeATK2;
-    private int puntiVita, difesa, stamina;
+    private int puntiVita, difesa, stamina, vitaMod, defMod, stmMod;
     private final int consumoATK, consumoATK1, consumoATK2, dannoATK, dannoATK1, dannoATK2;
 
-    public Player(String nome, String nomeATK1, String nomeATK2, int consumoATK1, int consumaATK2, int dannoATK1, int dannoATK2) {
+    public Player(String nome, String nomeATK1, String nomeATK2, int consumoATK1, int consumaATK2, int dannoATK1,
+            int dannoATK2) {
         this.nome = nome;
         this.nomeATK1 = nomeATK1;
         this.nomeATK2 = nomeATK2;
@@ -16,8 +17,11 @@ public abstract class Player implements Specials {
         this.dannoATK2 = dannoATK2;
         this.consumoATK = 20;
         this.puntiVita = 100;
-        this.difesa = 5;
+        this.difesa = 0;
         this.stamina = 100;
+        this.vitaMod = 0;
+        this.defMod = 0;
+        this.stmMod = 0;
     }
 
     public Player(String nome, String nomeATK1, String nomeATK2) {
@@ -31,8 +35,11 @@ public abstract class Player implements Specials {
         this.dannoATK1 = 40;
         this.dannoATK2 = 60;
         this.puntiVita = 100;
-        this.difesa = 5;
+        this.difesa = 0;
         this.stamina = 100;
+        this.vitaMod = 0;
+        this.defMod = 0;
+        this.stmMod = 0;
     }
 
     public Player(String nome) {
@@ -46,23 +53,43 @@ public abstract class Player implements Specials {
         this.dannoATK1 = 40;
         this.dannoATK2 = 60;
         this.puntiVita = 100;
-        this.difesa = 5;
+        this.difesa = 0;
         this.stamina = 100;
+        this.vitaMod = 0;
+        this.defMod = 0;
+        this.stmMod = 0;
     }
 
-    public String attacca(Player player) {
-        int dmg = dannoATK;
-        int stm = consumoATK;
+    public String attacca(Player target) {
+        String msg = "empty";
+        int dmg = dannoATK, stm = consumoATK;
         if (stamina < stm)
             return "Non hai abbastanza stamina";
-        stamina -= stm;
-        if (player.difesa > dmg)
+        if (target.getDifesa() >= dmg) {
+            msg = target.getNome() + " è stato attaccato ma non ha ricevuto danno";
             dmg = 0;
-        else
-            dmg -= player.difesa;
-        player.puntiVita -= dmg;
-        return player.nome + " e' stato attaccato con un attacco normale";
+        } else {
+            dmg -= difesa;
+            msg = target.getNome() + " è stato attaccato con un attacco normale";
+        }
+        stamina -= stm;
+        target.setPuntiVita(target.getPuntiVita() - dmg);
+        return msg;
     }
+
+    public void ripristina(int modVita, int modSTM, int modDEF) {
+        puntiVita += 5 + modVita;
+        stamina += 50 + modSTM;
+        difesa += modDEF;
+        this.vitaMod = 0;
+        this.defMod = 0;
+        this.stmMod = 0;
+    }
+    
+    @Override
+    public abstract String toString();
+
+// getter-setter
 
     public String getNome() {
         return nome;
@@ -108,6 +135,43 @@ public abstract class Player implements Specials {
         return dannoATK2;
     }
 
-    @Override
-    public abstract String toString();
+    public int getDannoATK() {
+        return dannoATK;
+    }
+
+    public void setPuntiVita(int puntiVita) {
+        this.puntiVita = puntiVita;
+    }
+
+    public void setDifesa(int difesa) {
+        this.difesa = difesa;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public int getVitaMod() {
+        return vitaMod;
+    }
+
+    public void setVitaMod(int vitaMod) {
+        this.vitaMod = vitaMod;
+    }
+
+    public int getDefMod() {
+        return defMod;
+    }
+
+    public void setDefMod(int defMod) {
+        this.defMod = defMod;
+    }
+
+    public int getStmMod() {
+        return stmMod;
+    }
+
+    public void setStmMod(int stmMod) {
+        this.stmMod = stmMod;
+    }
 }
