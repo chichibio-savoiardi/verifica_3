@@ -31,7 +31,7 @@ public class Biden extends Player implements American {
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         super.setStamina(super.getStamina() - stm);
-        super.setDefMod(40);
+        super.buffDefMod(40);
         return super.getNome() + " ha attivato " + American.nameATK2;
     }
 

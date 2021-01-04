@@ -7,16 +7,21 @@ public class Soleimani extends Player implements Arabic {
 
     @Override
     public String attacco1(Player player) {
-        return "Pestaggio";
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public String attacco2(Player player) {
-        return "Bambini Soldato";
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public String toString() {
-        return super.getNome();
+        // TODO Auto-generated method stub
+        return null;
     }
+
+    
 }

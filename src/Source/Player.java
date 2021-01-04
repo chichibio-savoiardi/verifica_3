@@ -69,8 +69,8 @@ public abstract class Player implements Specials {
             msg = target.getNome() + " è stato attaccato ma non ha ricevuto danno";
             dmg = 0;
         } else {
-            dmg -= difesa;
-            msg = target.getNome() + " è stato attaccato con un attacco normale";
+            dmg -= target.getDifesa();
+            msg = target.getNome() + " è stato attaccato con un attacco normale per danni " + dmg;
         }
         stamina -= stm;
         target.setPuntiVita(target.getPuntiVita() - dmg);
@@ -84,6 +84,18 @@ public abstract class Player implements Specials {
         this.vitaMod = 0;
         this.defMod = 0;
         this.stmMod = 0;
+    }
+
+    public void buffDefMod(int buff) {
+        defMod += buff;
+    }
+
+    public void buffVitaMod(int buff) {
+        vitaMod += buff;
+    }
+
+    public void buffStmMod(int buff) {
+        stmMod += buff;
     }
     
     @Override

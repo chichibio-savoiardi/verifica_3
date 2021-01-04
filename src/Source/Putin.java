@@ -7,16 +7,21 @@ public class Putin extends Player implements Slavic {
 
     @Override
     public String attacco1(Player player) {
-        return "Invasione Russa";
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public String attacco2(Player player) {
-        return "Vodka!";
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public String toString() {
-        return super.getNome();
+        // TODO Auto-generated method stub
+        return null;
     }
+
+    
 }

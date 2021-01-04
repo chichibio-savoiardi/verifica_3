@@ -127,6 +127,7 @@ class Client {
             if (arrayUtils.findNotNull(plr, arrayUtils.findNotNull(plr)) == -1) {// cerca un player vivo dopo il precedente, se non esiste esegue l'if
                 Player player = plr[arrayUtils.findNotNull(plr)];
                 System.out.println(player + "e' il vincitore!");
+                System.exit(0);
             }
         }
     }
