@@ -7,13 +7,14 @@ package Source;
 
 import java.util.Scanner;
 
+import JavaUtils.ArrayUtils;
+
 public class Main {
     private static Client clt = new Client(2);
 
     public static void main(String[] args) {// TODO
         clt.printPlayers();
         clt.turn();
-        clt.isDone();
     }
 }
 
@@ -21,9 +22,11 @@ public class Main {
 class Client {
     private Scanner cin;
     private Player[] plr;
+    private ArrayUtils arrayUtils;
 
     public Client(int nPlayers) {
         this.cin = new Scanner(System.in);
+        arrayUtils = new ArrayUtils();
         this.plr = new Player[nPlayers];
         initPlayers();
     }
@@ -54,13 +57,24 @@ class Client {
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             System.out.println(player + "e' il tuo turno!");
-            menu(player);
-            player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
+            String choice;
+            do {
+                menu(player);
+                isDone();
+                player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
+                if (player.getStamina() > player.getConsumoATK()) {
+                    System.out.println("Voui fare un'altra mossa? S/N?");
+                    choice = cin.next();
+                } else {
+                    choice = "n";
+                }
+            } while (choice.equals("s") || choice.equals("S"));
         }
     }
 
     private void menu(Player player) {
-        System.out.println("1 per attacco base" + "\n2 per " + player.getNomeATK1() + "\n3 per " + player.getNomeATK2());
+        System.out
+                .println("1 per attacco base" + "\n2 per " + player.getNomeATK1() + "\n3 per " + player.getNomeATK2());
         switch (cin.nextInt()) {
             case 1 -> {
                 player.attacca(targeter());
@@ -80,13 +94,14 @@ class Client {
         System.out.println("Scegli il giocatore da bersagliare");
         int choice = cin.nextInt();
         try {
-            if (plr[choice].getPuntiVita() <= 0) {
+            if (plr[choice] == null) {
                 System.out.println("giocatore non valido: morto");
                 targeter();
             }
             return plr[choice];
         } catch (Exception e) {
             System.out.println("Valore non valido in " + targeter().getClass());
+            System.out.println(e.getCause());
             targeter();
         }
         return plr[choice];
@@ -94,27 +109,25 @@ class Client {
 
     public void printPlayers() {
         for (int i = 0; i < plr.length; i++) {
-            if (plr[i].getPuntiVita() > 0) {
+            if (plr[i] != null) {
                 System.out.println(i + ": " + plr[i].getNome());
             }
         }
     }
 
     public void isDone() {
-        StringBuilder strBuild = new StringBuilder();
         for (int i = 0; i < plr.length; i++) {
             Player player = plr[i];
             if (player.getPuntiVita() <= 0) {
-                strBuild.append("90");
-                strBuild.append(i);
                 System.out.println(player.getNome() + " e' morto");
+                player = null;
             }
         }
-        if (strBuild.isEmpty()) {
-            System.out.println("La partita e' finita");
-            System.exit(Integer.parseInt(strBuild.toString()));
-        } else {
-            turn();
+        if (!(arrayUtils.findNotNull(plr) != -1)) {// cerca un Player vivo qualsiasi, se esiste esegue l'if
+            if (arrayUtils.findNotNull(plr, arrayUtils.findNotNull(plr)) == -1) {// cerca un player vivo dopo il precedente, se non esiste esegue l'if
+                Player player = plr[arrayUtils.findNotNull(plr)];
+                System.out.println(player + "e' il vincitore!");
+            }
         }
     }
 }

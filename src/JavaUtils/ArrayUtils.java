@@ -268,9 +268,37 @@ public class ArrayUtils {
         }
     }
 
-    public int findPos(Object[] Array) {
+    public int findNull(Object[] Array) {
         for (int i = 0; i < Array.length; i++)
             if (Array[i] == null)
+                return i;
+        return -1;
+    }
+
+    public int findNull(Object[] Array, int startPos) {
+        for (int i = startPos; i < Array.length; i++)
+            if (Array[i] == null)
+                return i;
+        return -1;
+    }
+
+    public int findNotNull(Object[] Array) {
+        for (int i = 0; i < Array.length; i++)
+            if (Array[i] != null)
+                return i;
+        return -1;
+    }
+
+    public int findNotNull(Object[] Array, int startPos) {
+        for (int i = startPos; i < Array.length; i++)
+            if (Array[i] != null)
+                return i;
+        return -1;
+    }
+
+    public int search(int[] array, int toSearch) {
+        for (int i = 0; i < array.length; i++)
+            if (array[i] == toSearch)
                 return i;
         return -1;
     }
