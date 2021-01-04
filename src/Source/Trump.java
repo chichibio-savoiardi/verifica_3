@@ -25,7 +25,6 @@ public class Trump extends Player implements American {
     }
 
     @Override
-    @Override
     public String attacco2(Player target) {
         int stm = American.borderCtrlSTM;
         if (super.getStamina() < stm)
