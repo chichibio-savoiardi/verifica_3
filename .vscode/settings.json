@@ -1,4 +1,8 @@
 {
     "java.dependency.packagePresentation": "flat",
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "E:/Projects/Java/_Others/MyUtils/MyUtils.jar"
+    ]
 }
