@@ -8,7 +8,7 @@ public class Salvini extends Player implements European {
     @Override
     public String attacco1(Player target) {
         String msg = "empty";
-        int dmg = European.jointOpDMG, stm = European.jointOpSTM;
+        int dmg = super.getDannoATK1(), stm = super.getConsumoATK1();
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         if (target.getDifesa() >= dmg) {
@@ -16,7 +16,7 @@ public class Salvini extends Player implements European {
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = target.getNome() + " è stato attaccato con " + European.nameATK1 + ", hai guadagnato 5 difesa";
+            msg = target.getNome() + " è stato attaccato con " + super.getNomeATK1() + ", hai guadagnato 5 difesa";
         }
         super.setStamina(super.getStamina() - stm);
         super.buffDefMod(5);
@@ -27,7 +27,7 @@ public class Salvini extends Player implements European {
     @Override
     public String attacco2(Player target) {
         String msg = "empty";
-        int dmg = European.politicalReformDMG, stm = European.politicalReformSTM;
+        int dmg = super.getDannoATK2(), stm = super.getConsumoATK2();
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         if (target.getDifesa() >= dmg) {
@@ -35,7 +35,7 @@ public class Salvini extends Player implements European {
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = target.getNome() + " è stato attaccato con " + European.nameATK2;
+            msg = target.getNome() + " è stato attaccato con " + super.getNomeATK2();
         }
         super.setStamina(super.getStamina() - stm);
         super.buffVitaMod(25);
@@ -50,5 +50,5 @@ public class Salvini extends Player implements European {
         "Info attacco base: " + ", Danno: " + super.getDannoATK() + ", Stamina: " + super.getConsumoATK() + "\n" +
         "Info " + super.getNomeATK1() + ": Danno: " + super.getDannoATK1() + ", Stamina: " + super.getConsumoATK1() + ", Descrizione: " + European.ATK1Description + "\n"+
         "Info " + super.getNomeATK2() + ": Danno: " + super.getDannoATK2() + ", Stamina: " + super.getConsumoATK2() + ", Descrizione: " + European.ATK2Description + "\n";
-    }    
+    }
 }

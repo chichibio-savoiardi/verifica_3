@@ -8,7 +8,7 @@ public class Trump extends Player implements American {
     @Override
     public String attacco1(Player target) {
         String msg = "empty";
-        int dmg = American.mcNukeDMG, stm = American.mcNukeSTM;
+        int dmg = super.getDannoATK1(), stm = super.getConsumoATK1();
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         if (target.getDifesa() >= dmg) {
@@ -16,7 +16,7 @@ public class Trump extends Player implements American {
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = target.getNome() + " è stato attaccato con " + American.nameATK1 + ", hai ricevuto 5 danni per via della McNucleare";
+            msg = target.getNome() + " è stato attaccato con " + super.getNomeATK2() + ", hai ricevuto 5 danni per via della McNucleare";
         }
         super.setStamina(super.getStamina() - stm);
         super.setPuntiVita(super.getPuntiVita() - 5);
@@ -26,12 +26,12 @@ public class Trump extends Player implements American {
 
     @Override
     public String attacco2(Player target) {
-        int stm = American.borderCtrlSTM;
+        int stm = super.getConsumoATK2();
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         super.setStamina(super.getStamina() - stm);
-        super.buffDefMod(40);
-        return super.getNome() + " ha attivato " + American.nameATK2;
+        super.buffDefMod(20);
+        return super.getNome() + " ha attivato " + super.getNomeATK2();
     }
     
     @Override

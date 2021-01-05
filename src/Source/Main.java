@@ -66,6 +66,7 @@ class Client {
                     System.out.println("Voui fare un'altra mossa? S/N?");
                     choice = cin.next();
                 } else {
+                    System.out.println(player.getNome() + " Non hai abbastanza stamina per continuare il turno");
                     choice = "n";
                 }
             } while (choice.equals("s") || choice.equals("S"));
@@ -100,8 +101,7 @@ class Client {
             }
             return plr[choice];
         } catch (Exception e) {
-            System.out.println("Valore non valido in " + targeter().getClass());
-            System.out.println(e.getCause());
+            e.printStackTrace();
             targeter();
         }
         return plr[choice];
