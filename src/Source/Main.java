@@ -7,10 +7,10 @@ package Source;
 
 import java.util.Scanner;
 
-import MyUtils.*;// libreria personale, contiene i metodi che abbiamo fatto durante gli anni più qualcuno mio
+import MyUtils.*;
 
 public class Main {
-    private static Client clt = new Client();
+    private static Client clt = new Client(2);
 
     public static void main(String[] args) {
         System.out.println("+-+-+-+-+");
@@ -25,13 +25,6 @@ class Client {
     private Player[] plr;
     private ArrayUtils arrayUtils;
 
-    public Client() {
-        this.cin = new Scanner(System.in);
-        arrayUtils = new ArrayUtils();
-        this.plr = new Player[2];
-        initPlayers();
-    }
-
     public Client(int nPlayers) {
         this.cin = new Scanner(System.in);
         arrayUtils = new ArrayUtils();
@@ -39,7 +32,7 @@ class Client {
         initPlayers();
     }
 
-    private void initPlayers() {// chiede all'utente chi vuole impersonare e inizializza il vettore in accordanza
+    private void initPlayers() {
         for (int i = 0; i < plr.length; i++) {
             System.out.println("Giocatore " + i + " scegli il tuo personaggio");
             System.out.println("""
@@ -61,23 +54,23 @@ class Client {
         }
     }
 
-    public void turn() {// inizia il turno
-        for (int i = 0; i < plr.length; i++) {// ripete tante volte quanti i giocatori e puoi fa una ricorsione
+    public void turn() {
+        for (int i = 0; i < plr.length; i++) {
             System.out.println("+-+-+-+-+");
-            Player player = plr[i];// assegno a una variabile il valore di plr alla posizione i per semplicita
+            Player player = plr[i];
             String choice;
             do {
                 System.out.println(player + "\ne' il tuo turno!");
                 menu(player);
-                isDone();// mi assicuro che la partita sia finita molte volte
-                if (player.getStamina() > player.getConsumoATK()) {// controlla che il giocatore abbia stamina per eseguire almeno l'attacco base
-                    System.out.println("Vuoi fare un'altra mossa? S/N?");
+                isDone();
+                if (player.getStamina() > player.getConsumoATK()) {
+                    System.out.println("Voui fare un'altra mossa? S/N?");
                     choice = cin.next();
                 } else {
                     System.out.println(player.getNome() + " Non hai abbastanza stamina per continuare il turno");
                     choice = "n";
                 }
-            } while (choice.equals("s") || choice.equals("S"));// se il giocatore vuole continuare
+            } while (choice.equals("s") || choice.equals("S"));
             player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
             isDone();
         }
@@ -86,11 +79,11 @@ class Client {
     }
 
     private void menu(Player player) {
-        isDone();// controlla se la partita è finita prima di tutto
+        isDone();
         Player target = player;
         System.out
                 .println("1 per attacco base" + "\n2 per " + player.getNomeATK1() + "\n3 per " + player.getNomeATK2());
-        switch (cin.nextInt()) {// in base alla scelta del giocatore sceglie uno dei tre attacchi disponibili
+        switch (cin.nextInt()) {
             case 1 -> {
                 target = targeter();
                 System.out.println(player.attacca(target));
@@ -107,12 +100,12 @@ class Client {
         }
     }
 
-    private Player targeter() {// ritorna un giocatore in base alla scelta dell'utente
-        isDone();// controlla se la partita è finita prima di tutto
+    private Player targeter() {
+        isDone();
         printPlayers();
         System.out.println("Scegli il giocatore da bersagliare");
         int choice = cin.nextInt();
-        try {// potrebbe essere che ritorna un NullPointerException
+        try {
             if (plr[choice] == null) {
                 System.out.println("giocatore non valido: morto");
                 targeter();
@@ -125,7 +118,7 @@ class Client {
         return plr[choice];
     }
 
-    public void printPlayers() {// duh
+    public void printPlayers() {
         for (int i = 0; i < plr.length; i++) {
             if (plr[i] != null) {
                 System.out.println("-----");
@@ -135,7 +128,7 @@ class Client {
         System.out.println("-----");
     }
 
-    public void isDone() {// controlla che tutti i giocatori siano vivi e ferma la partita quando tutti tranne un giocatore sono morti
+    public void isDone() {
         for (int i = 0; i < plr.length; i++) {
             if (plr[i] != null) {
                 if (plr[i].getPuntiVita() <= 0) {
@@ -146,14 +139,14 @@ class Client {
         }
         Player alive = plr[arrayUtils.search.findNotNull(plr)];// cerca un Player vivo qualsiasi
         int aliveIndex = arrayUtils.search.findNotNull(plr);
-        if (plr.length == 2) {// se ci sono 2 giocatori esegue un pezzo di codice fatto idiota per determinare il vincitore
+        if (plr.length == 2) {
             if (plr[0] == null) {
                 printWinner(alive);
             } else if (plr[1] == null) {
                 printWinner(alive);
             }
         } else {
-            try {// perché sto usando null come valore e il pc mi urla addosso
+            try {
                 if (arrayUtils.search.findNotNull(plr, aliveIndex) == -1) {// cerca un player vivo dopo il precedente, se non esiste esegue l'if
                     printWinner(alive);
                 }
