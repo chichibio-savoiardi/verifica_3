@@ -13,16 +13,16 @@ public class Biden extends Player implements American {
         if (super.getStamina() < stm)
             return "Non hai abbastanza stamina";
         if (target.getDifesa() >= dmg) {
-            msg = target.getNome() + " è stato attaccato ma non ha ricevuto danno, hai ricevuto 5 danni per via della McNucleare";
+            msg = "\nè stato attaccato ma non ha ricevuto danno, hai ricevuto 5 danni per via della McNucleare";
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = target.getNome() + " è stato attaccato con " + super.getNomeATK2() + ", hai ricevuto 5 danni per via della McNucleare";
+            msg = "\nè stato attaccato con " + super.getNomeATK1() + ", hai ricevuto 5 danni per via della McNucleare";
         }
         super.setStamina(super.getStamina() - stm);
         super.setPuntiVita(super.getPuntiVita() - 5);
         target.setPuntiVita(target.getPuntiVita() - dmg);
-        return msg;
+        return target + msg;
     }
 
     @Override
@@ -42,6 +42,6 @@ public class Biden extends Player implements American {
                 + ", Stamina: " + super.getConsumoATK() + "\n" + "Info " + super.getNomeATK1() + ": Danno: "
                 + super.getDannoATK1() + ", Stamina: " + super.getConsumoATK1() + ", Descrizione: "
                 + American.ATK1Description + "\n" + "Info " + super.getNomeATK2() + ": Danno: " + super.getDannoATK2()
-                + ", Stamina: " + super.getConsumoATK2() + ", Descrizione: " + American.ATK2Description + "\n";
+                + ", Stamina: " + super.getConsumoATK2() + ", Descrizione: " + American.ATK2Description;
     }
 }

@@ -7,12 +7,13 @@ package Source;
 
 import java.util.Scanner;
 
-import JavaUtils.ArrayUtils;
+import MyUtils.*;
 
 public class Main {
     private static Client clt = new Client(2);
 
     public static void main(String[] args) {// TODO
+        System.out.println("+-+-+-+-+");
         clt.printPlayers();
         clt.turn();
     }
@@ -55,13 +56,13 @@ class Client {
 
     public void turn() {
         for (int i = 0; i < plr.length; i++) {
+            System.out.println("+-+-+-+-+");
             Player player = plr[i];
-            System.out.println(player + "e' il tuo turno!");
             String choice;
             do {
+                System.out.println(player + "\ne' il tuo turno!");
                 menu(player);
                 isDone();
-                player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
                 if (player.getStamina() > player.getConsumoATK()) {
                     System.out.println("Voui fare un'altra mossa? S/N?");
                     choice = cin.next();
@@ -70,27 +71,37 @@ class Client {
                     choice = "n";
                 }
             } while (choice.equals("s") || choice.equals("S"));
+            player.ripristina(player.getVitaMod(), player.getStmMod(), player.getDefMod());
+            isDone();
         }
+        isDone();
+        turn();
     }
 
     private void menu(Player player) {
+        isDone();
+        Player target = player;
         System.out
                 .println("1 per attacco base" + "\n2 per " + player.getNomeATK1() + "\n3 per " + player.getNomeATK2());
         switch (cin.nextInt()) {
             case 1 -> {
-                player.attacca(targeter());
+                target = targeter();
+                System.out.println(player.attacca(target));
             }
             case 2 -> {
-                player.attacco1(targeter());
+                target = targeter();
+                System.out.println(player.attacco1(target));
             }
             case 3 -> {
-                player.attacco2(targeter());
+                target = targeter();
+                System.out.println(player.attacco2(target));
             }
             default -> menu(player);
         }
     }
 
     private Player targeter() {
+        isDone();
         printPlayers();
         System.out.println("Scegli il giocatore da bersagliare");
         int choice = cin.nextInt();
@@ -110,25 +121,44 @@ class Client {
     public void printPlayers() {
         for (int i = 0; i < plr.length; i++) {
             if (plr[i] != null) {
-                System.out.println(i + ": " + plr[i].getNome());
+                System.out.println("-----");
+                System.out.println(i + ": " + plr[i]);
             }
         }
+        System.out.println("-----");
     }
 
     public void isDone() {
         for (int i = 0; i < plr.length; i++) {
-            Player player = plr[i];
-            if (player.getPuntiVita() <= 0) {
-                System.out.println(player.getNome() + " e' morto");
-                player = null;
+            if (plr[i] != null) {
+                if (plr[i].getPuntiVita() <= 0) {
+                    System.out.println(plr[i].getNome() + " e' morto");
+                    plr[i] = null;
+                }
             }
         }
-        if (!(arrayUtils.findNotNull(plr) != -1)) {// cerca un Player vivo qualsiasi, se esiste esegue l'if
-            if (arrayUtils.findNotNull(plr, arrayUtils.findNotNull(plr)) == -1) {// cerca un player vivo dopo il precedente, se non esiste esegue l'if
-                Player player = plr[arrayUtils.findNotNull(plr)];
-                System.out.println(player + "e' il vincitore!");
-                System.exit(0);
+        Player alive = plr[arrayUtils.search.findNotNull(plr)];// cerca un Player vivo qualsiasi
+        int aliveIndex = arrayUtils.search.findNotNull(plr);
+        if (plr.length == 2) {
+            if (plr[0] == null) {
+                printWinner(alive);
+            } else if (plr[1] == null) {
+                printWinner(alive);
+            }
+        } else {
+            try {
+                if (arrayUtils.search.findNotNull(plr, aliveIndex) == -1) {// cerca un player vivo dopo il precedente, se non esiste esegue l'if
+                    printWinner(alive);
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                printWinner(alive);
             }
         }
+    }
+
+    private void printWinner(Player alive) {
+        System.out.println(alive + "\ne' il vincitore!");
+        System.exit(2);
     }
 }
