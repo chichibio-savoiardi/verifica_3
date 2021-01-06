@@ -158,6 +158,7 @@ class Client {
     }
 
     private void printWinner(Player alive) {
+        System.out.println("+-+ \\[T]/ +-+");
         System.out.println(alive + "\ne' il vincitore!");
         System.exit(2);
     }
