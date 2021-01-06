@@ -12,7 +12,7 @@ import MyUtils.*;
 public class Main {
     private static Client clt = new Client(2);
 
-    public static void main(String[] args) {// TODO
+    public static void main(String[] args) {
         System.out.println("+-+-+-+-+");
         clt.printPlayers();
         clt.turn();
