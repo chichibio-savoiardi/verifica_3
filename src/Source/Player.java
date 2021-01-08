@@ -60,7 +60,7 @@ public abstract class Player implements Specials {
         this.stmMod = 0;
     }
 
-    public String attacca(Player target) {
+    public String attacca(Player target) {// la funzione di attacco base, tutti gli altri attacchi sono una copia modificata di questa funzione
         StringBuilder msg = new StringBuilder(target.getNome());
         int dmg = dannoATK, stm = consumoATK;
         if (stamina < stm)// controlla la stamina
@@ -86,7 +86,7 @@ public abstract class Player implements Specials {
         this.stmMod = 0;
     }
 
-    public void buffDefMod(int buff) {
+    public void buffDefMod(int buff) {// metodi usati in ripristina per aumentare statistiche del giocatore
         defMod += buff;
     }
 
