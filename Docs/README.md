@@ -6,7 +6,8 @@ Conversione da un programma fatto in c++ con paradigma Functional Programming a 
 
 ## Obiettivi
 - [x] Conversione del programma in java
-- [x] Completamento della lista di obiettivi nell'[UML](verifica3_progetto.pdf)
+- [x] Completamento della lista di obiettivi nel [PDF](verifica3_progetto.pdf)
+- [ ] Dominazione mondiale
 
 # Project UML
 ![UML](projectUML.png)
