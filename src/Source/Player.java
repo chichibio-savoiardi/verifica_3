@@ -61,20 +61,20 @@ public abstract class Player implements Specials {
     }
 
     public String attacca(Player target) {
-        String msg = "empty";
+        StringBuilder msg = new StringBuilder(target.getNome());
         int dmg = dannoATK, stm = consumoATK;
-        if (stamina < stm)
+        if (stamina < stm)// controlla la stamina
             return "Non hai abbastanza stamina";
-        if (target.getDifesa() >= dmg) {
-            msg = target.getNome() + " è stato attaccato ma non ha ricevuto danno";
+        if (target.getDifesa() >= dmg) {// la difesa agisce come attenuatore del danno
+            msg.append(" è stato attaccato ma non ha ricevuto danno");
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = target.getNome() + " è stato attaccato con un attacco normale per danni " + dmg;
+            msg.append(" è stato attaccato con un attacco normale per danni " + dmg);
         }
         stamina -= stm;
-        target.setPuntiVita(target.getPuntiVita() - dmg);
-        return msg;
+        target.setPuntiVita(target.getPuntiVita() - dmg);// toglie la vita all'avversario
+        return msg.toString();
     }
 // alla fine di ogni turno vengono ripristinate di un po i valori del personaggio e vengono resettate le variabili di buff/debuff
     public void ripristina(int modVita, int modSTM, int modDEF) {
