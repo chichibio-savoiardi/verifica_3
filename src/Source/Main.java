@@ -1,7 +1,7 @@
-/*+-+-+*\
-* Autore programma originale: Iuri Antico, Emanuele Parinetti
-* Autore versione aggiornata: Iuri Antico
-\*+-+-+*/
+/**
+ * Autore programma originale: Iuri Antico, Emanuele Parinetti
+ * Autore versione aggiornata: Iuri Antico
+ */
 
 package Source;
 
