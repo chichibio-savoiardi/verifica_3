@@ -76,7 +76,7 @@ public abstract class Player implements Specials {
         target.setPuntiVita(target.getPuntiVita() - dmg);
         return msg;
     }
-
+// alla fine di ogni turno vengono ripristinate di un po i valori del personaggio e vengono resettate le variabili di buff/debuff
     public void ripristina(int modVita, int modSTM, int modDEF) {
         puntiVita += 5 + modVita;
         stamina += 50 + modSTM;
