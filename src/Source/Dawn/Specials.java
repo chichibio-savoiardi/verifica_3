@@ -1,4 +1,4 @@
-package Source;
+package Dawn;
 
 public interface Specials {
     String nameATK1 = "Primo Attacco Speciale";

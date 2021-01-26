@@ -1,4 +1,4 @@
-package Source;
+package Dawn;
 
 public interface European {
     String ATK1Description = "Un'operazione contro l'avversario che aumenta minimalmente la propria difesa";

@@ -1,4 +1,4 @@
-package Source;
+package Dawn;
 
 public interface Slavic {
     String ATK1Description = "Attacco contro l'avversario che riduce la sua stamina di 15, oltre a danneggiarlo";

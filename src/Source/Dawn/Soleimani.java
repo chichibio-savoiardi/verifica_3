@@ -1,8 +1,8 @@
-package Source;
+package Dawn;
 
-public class Putin extends Player implements Slavic {
-    public Putin() {
-        super("Putin Putout", Slavic.nameATK1, Slavic.nameATK2, Slavic.invasionSTM, Slavic.vodkaSTM, Slavic.invasionDMG, Slavic.vodkaDMG);
+public class Soleimani extends Player implements Arabic {
+    public Soleimani() {
+        super("Solemani", Arabic.nameATK1, Arabic.nameATK2, Arabic.beatingSTM, Arabic.childSoldiersSTM, Arabic.beatingDMG, Arabic.childSoldiersDMG);
     }
 
     @Override
@@ -16,11 +16,10 @@ public class Putin extends Player implements Slavic {
             dmg = 0;
         } else {
             dmg -= target.getDifesa();
-            msg = "\nè stato attaccato con " + super.getNomeATK1() + " e ha perso 15 stamina";
+            msg = "\nè stato attaccato con " + super.getNomeATK1();
         }
         super.setStamina(super.getStamina() - stm);
         target.setPuntiVita(target.getPuntiVita() - dmg);
-        target.buffStmMod(-15);
         return target + msg;
     }
 
@@ -38,8 +37,7 @@ public class Putin extends Player implements Slavic {
             msg = "\nè stato attaccato con " + super.getNomeATK2();
         }
         super.setStamina(super.getStamina() - stm);
-        super.buffVitaMod(10);
-        super.buffDefMod(5);
+        super.buffStmMod(20);
         target.setPuntiVita(target.getPuntiVita() - dmg);
         return target + msg;
     }
@@ -49,7 +47,7 @@ public class Putin extends Player implements Slavic {
         return 
         "Nome: " + super.getNome() + ", Vita: " + super.getPuntiVita() + ", Stamina: " + super.getStamina() + ", Difesa: " + super.getDifesa() + "\n" + 
         "Info attacco base: " + "Danno: " + super.getDannoATK() + ", Stamina: " + super.getConsumoATK() + "\n" +
-        "Info " + super.getNomeATK1() + ": Danno: " + super.getDannoATK1() + ", Stamina: " + super.getConsumoATK1() + ", Descrizione: " + Slavic.ATK1Description + "\n"+
-        "Info " + super.getNomeATK2() + ": Danno: " + super.getDannoATK2() + ", Stamina: " + super.getConsumoATK2() + ", Descrizione: " + Slavic.ATK2Description;
+        "Info " + super.getNomeATK1() + ": Danno: " + super.getDannoATK1() + ", Stamina: " + super.getConsumoATK1() + ", Descrizione: " + Arabic.ATK1Description + "\n"+
+        "Info " + super.getNomeATK2() + ": Danno: " + super.getDannoATK2() + ", Stamina: " + super.getConsumoATK2() + ", Descrizione: " + Arabic.ATK2Description;
     }
 }

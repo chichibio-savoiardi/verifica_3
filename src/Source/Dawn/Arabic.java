@@ -1,4 +1,4 @@
-package Source;
+package Dawn;
 
 public interface Arabic {
     String ATK1Description = "Con i tuoi amici pesti l'avversario";

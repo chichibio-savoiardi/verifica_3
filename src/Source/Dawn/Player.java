@@ -1,6 +1,7 @@
-package Source;
+package Dawn;
 
-public abstract class Player implements Specials {
+import lombok.Data;
+public abstract @Data class Player implements Specials {
     private String nome, nomeATK1, nomeATK2;
     private int puntiVita, difesa, stamina, vitaMod, defMod, stmMod;
     private final int consumoATK, consumoATK1, consumoATK2, dannoATK, dannoATK1, dannoATK2;
@@ -100,90 +101,4 @@ public abstract class Player implements Specials {
     
     @Override
     public abstract String toString();
-
-// getter-setter
-
-    public String getNome() {
-        return nome;
-    }
-
-    public int getPuntiVita() {
-        return puntiVita;
-    }
-
-    public String getNomeATK1() {
-        return nomeATK1;
-    }
-
-    public String getNomeATK2() {
-        return nomeATK2;
-    }
-
-    public int getDifesa() {
-        return difesa;
-    }
-
-    public int getStamina() {
-        return stamina;
-    }
-
-    public int getConsumoATK() {
-        return consumoATK;
-    }
-
-    public int getConsumoATK1() {
-        return consumoATK1;
-    }
-
-    public int getConsumoATK2() {
-        return consumoATK2;
-    }
-
-    public int getDannoATK1() {
-        return dannoATK1;
-    }
-
-    public int getDannoATK2() {
-        return dannoATK2;
-    }
-
-    public int getDannoATK() {
-        return dannoATK;
-    }
-
-    public void setPuntiVita(int puntiVita) {
-        this.puntiVita = puntiVita;
-    }
-
-    public void setDifesa(int difesa) {
-        this.difesa = difesa;
-    }
-
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
-
-    public int getVitaMod() {
-        return vitaMod;
-    }
-
-    public void setVitaMod(int vitaMod) {
-        this.vitaMod = vitaMod;
-    }
-
-    public int getDefMod() {
-        return defMod;
-    }
-
-    public void setDefMod(int defMod) {
-        this.defMod = defMod;
-    }
-
-    public int getStmMod() {
-        return stmMod;
-    }
-
-    public void setStmMod(int stmMod) {
-        this.stmMod = stmMod;
-    }
 }

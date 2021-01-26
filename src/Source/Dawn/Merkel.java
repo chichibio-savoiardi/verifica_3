@@ -1,8 +1,8 @@
-package Source;
+package Dawn;
 
-public class Salvini extends Player implements European {
-    public Salvini() {
-        super("Capitan Salvini", European.nameATK1, European.nameATK2, European.jointOpSTM, European.politicalReformSTM, European.jointOpDMG, European.politicalReformDMG);
+public class Merkel extends Player implements European {
+    public Merkel() {
+        super("Merchel", European.nameATK1, European.nameATK2, European.jointOpSTM, European.politicalReformSTM, European.jointOpDMG, European.politicalReformDMG);
     }
 
     @Override
